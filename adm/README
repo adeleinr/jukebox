@@ -1,24 +1,20 @@
-
 README
-------
+--------------
 
 Database Info:
---------------
+--------------------
 
 database name : jukebox-db
 username: jukebox
-password: d1llw33d5
-server: leopard
-
-Go to to access it: http://cs.fiu.edu/pma-new
+password: 
+server: 
 
 FileSystem Info:
-----------------
+-----------------------
 
 /home/jukebox:
 
 adm/  
-backupstuff/  
 lib/  
 share/  
 usr/ 
