@@ -1,0 +1,52 @@
+
+README
+------
+
+Database Info:
+--------------
+
+database name : jukebox-db
+username: jukebox
+password: d1llw33d5
+server: leopard
+
+Go to to access it: http://cs.fiu.edu/pma-new
+
+FileSystem Info:
+----------------
+
+/home/jukebox:
+
+adm/  
+backupstuff/  
+lib/  
+share/  
+usr/ 
+
+/home/jukebox/adm:
+
+README
+jukeserver.pl*  
+jukeunload.pl*  
+jukeload.pl*  
+jukestat.pl*
+jukewrite.pl*
+
+/home/jukebox/usr:
+
+backup.pl* 
+jukels.pl*
+
+/home/jukebox/lib:
+
+DataInventory.pm  
+Juke.pm
+
+/home/jukebox/share:
+
+counterfile*  
+data/  
+queue/  
+spool/
+
+The counterfile keeps track of the current job id. This is used by the jukeserver, the backup command, and jukewrite. The data directory is where we keep and inventory of what data has been backed up so that users dont have to read the disk to see what data is in it. The queue contains files and each represent a job to be executed by the jukeserver. Job id's are reused. The spool contains the compressed backup files that await the jukewrite command to place them in a disk.

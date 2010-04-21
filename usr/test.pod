@@ -1,0 +1,63 @@
+
+=head1 NAME 
+
+backup - Allows user to backup folders
+
+=head1 SYNOPSIS 
+
+B<backup> [-d disk] [-s side] [-g group] [-h] -f file or folder
+
+=head1 DESCRIPTION
+
+B<backup> will not allow you to specify symbolic links as the folder to be backed up.
+This command finds the file or folder  specified, tars it and zips it. Then it places the compressed file in a spool directory and schedules a job with the jukeserver daemon. The compressed file is stamped with the current date ( day, month, year, min, seconds).
+If after compressed, the file is bigger than approximately 2.5 Giga Bytes, the command will not proceed and will return an error.  
+
+=head1 OPTIONS
+
+B<-d> Diskid - This is the id assigned to the disk when it was firt loaded into the jukebox. Disk ids range from 1-256 inclusive.
+
+B<-s> Side - Every disk has two sides, a and b. If you use this option the program will check if your specified side has enough space for your backup. If not, it will output an error.
+
+B<-g> Group to which the disk belongs - Every disk belongs to a single group
+
+B<-h> Show the different options to operate the command
+
+B<-f> File or folder to be backed up - Cannot be a symbolic link. Check with 'ls -l filename' to check for this.
+
+You can use any of the following option combinations:
+
+B<(1)>
+-d: disk to be written
+-s: side to be written
+-g: group
+-f: source file to be backed up
+
+B<(2)>
+-d: disk to be written
+-s: side to be written
+-f: source file to be backed up
+
+B<(3)>
+-g: group
+-f: source file to be backed up
+
+B<(4)>
+-d: disk to be written
+-f: source file to be backed up
+
+=head1 AUTHOR
+
+Adelein Rodriguez, Sys group
+
+=head1 BUGS
+
+So far this program does not check if the disk specified truly belongs to the group specified. This has not been implemented because it would imply accessing the database to find out which disk belongs to what group, and this can be not very optimal for a client side program. This feature should be implemented in the future though.
+
+=head1 SEE ALSO
+
+B<jukels>
+
+=head1 COPYRIGHT
+
+This program is free software and was created by the F.I.U. School of Computer Science, Sys Group. You may copy it or distribute it.

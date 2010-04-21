@@ -1,0 +1,66 @@
+
+=head1 NAME 
+
+jukeload - load a disk (old or new) into the jukebox
+
+=head1 SYNOPSIS 
+
+B<jukeload> [-d disk] [-g group | -c group] [-n] [-h] 
+
+=head1 DESCRIPTION
+
+Loads disks into the jukebox, and adds the corresponding jukedb entry. When a new disk is loaded, a new disk entry is created for it. Its disk id is obtained from the "insertid" that the mysql database returns when it has inserted a new record. This is an autoincrement number, be aware that if you remove a record from the database directly, the number will not reused. So do NOT remove a disk entry from the database. The disk is loaded in the next slot in the jukebox available for the specified group. Use option -c to create a new group. By default, B<jukeload> assumes that the disk is being loaded on side a, so make sure that side a is facing up when you load it.
+In the case when a disk has been unloaded, the entry in the disks table for that disk remains, the only change is that the slot id is 0, because the disk is not physically in the jukebox. This is done so that when a disk is loaded again into the jukebox, there is a record of it already.
+If one wishes to reload a disk, but as part of a new group, then use option -c to create a new group and load disk under it. A new group will be added and the entry of the disk will be updated to be under the new group. If one wishes to load a disk again, but as part of a different existing group, then use option -g to specify the other group. In this case too, it is assumed that the disk is being loaded on side a.
+
+=head1 OPTIONS
+
+B<-d> Diskid - This is the id assigned to the disk when it was firt loaded into the jukebox. Disk ids range from 1-256 inclusive.
+
+B<-g> Group to which the disk belongs - Every disk belongs to a single group. This option is used only if the group you specify exists already.
+
+B<-c> New group to be created - If this option is specified then it is assumed that the disk will be loaded under this group.
+
+B<-n> This is a flag to indicate that the disk is totally new. A new record will be created for the disk and a disk id assigned.
+
+B<-h> Show the different options to operate the command
+
+You can use any of the following option combinations:
+
+B<(1)>
+-g group
+-n 
+
+B<(2)>
+-c group 
+-n 
+
+B<(3)>
+-c group 
+-d disk id
+
+B<(4)>
+-g group
+-d disk id
+
+B<(5)>
+-d disk id
+
+B<(6)>
+-h
+
+=head1 AUTHOR
+
+Adelein Rodriguez, Sys group
+
+=head1 BUGS
+
+
+
+=head1 SEE ALSO
+
+B<jukeunload>
+
+=head1 COPYRIGHT
+
+This program is free software and was created by the F.I.U. School of Computer Science, Sys Group. You may copy it or distribute it.
